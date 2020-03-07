@@ -2,10 +2,11 @@ module Main exposing (main)
 
 import Browser
 import Html exposing (..)
-import Html.Attributes exposing (..)
+import Html.Attributes exposing (autofocus, disabled, value)
 import Html.Events exposing (..)
 import Http
-import Json.Decode as D exposing (Decoder)
+import Json.Decode exposing (Decoder, string, succeed)
+import Json.Decode.Pipeline exposing (required)
 
 
 main : Program () Model Msg
@@ -31,7 +32,7 @@ type alias Model =
 type State
     = Init
     | Waiting
-    | Loaded CompanyRanking
+    | Loaded Ranking
     | Failed Http.Error
 
 
@@ -49,7 +50,7 @@ init _ =
 type Msg
     = Input String
     | Send
-    | Receive (Result Http.Error CompanyRanking)
+    | Receive (Result Http.Error Ranking)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -66,7 +67,7 @@ update msg model =
             , Http.post
                 { url = "https://es-analyzer.herokuapp.com/"
                 , body = Http.multipartBody [ Http.stringPart "sentence" model.input ]
-                , expect = Http.expectJson Receive userDecoder
+                , expect = Http.expectJson Receive rankingDecoder
                 }
             )
 
@@ -88,7 +89,6 @@ view model =
             [ textarea
                 [ onInput Input
                 , autofocus True
-                , placeholder "GitHub name"
                 , value model.input
                 ]
                 []
@@ -98,14 +98,14 @@ view model =
                         || String.isEmpty (String.trim model.input)
                     )
                 ]
-                [ text "Submit" ]
+                [ text "分析する" ]
             ]
         , case model.state of
             Init ->
                 text ""
 
             Waiting ->
-                text "Waiting..."
+                text "分析中..."
 
             Loaded ranking ->
                 ul []
@@ -122,37 +122,30 @@ view model =
 -- DATA
 
 
-type alias CompanyRanking =
+type alias Ranking =
     { first : String
     , second : String
     , third : String
     , fourth : String
+    , fifth : String
+    , sixth : String
+    , seventh : String
+    , eighth : String
+    , ninth : String
+    , tenth : String
     }
 
 
-
--- , fifth : String
--- , sixth : String
--- , seventh : String
--- , eighth : String
--- , ninth : String
--- , tenth : String
--- }
-
-
-userDecoder : Decoder CompanyRanking
-userDecoder =
-    D.map4 CompanyRanking
-        (D.field "first" D.string)
-        (D.field "second" D.string)
-        (D.field "third" D.string)
-        (D.field "fourth" D.string)
-
-
-
--- (D.field "fifth" D.string)
--- (D.field "sixth" D.string)
--- (D.field "seventh" D.string)
--- (D.field "eighth" D.string)
--- (D.field "ninth" D.string)
--- (D.field "tenth" D.string)
+rankingDecoder : Decoder Ranking
+rankingDecoder =
+    succeed Ranking
+        |> required "first" string
+        |> required "second" string
+        |> required "third" string
+        |> required "fourth" string
+        |> required "fifth" string
+        |> required "sixth" string
+        |> required "seventh" string
+        |> required "eighth" string
+        |> required "ninth" string
+        |> required "tenth" string

@@ -6149,21 +6149,79 @@ var $elm$http$Http$post = function (r) {
 	return $elm$http$Http$request(
 		{body: r.body, expect: r.expect, headers: _List_Nil, method: 'POST', timeout: $elm$core$Maybe$Nothing, tracker: $elm$core$Maybe$Nothing, url: r.url});
 };
-var $elm$http$Http$stringPart = _Http_pair;
-var $author$project$Main$CompanyRanking = F4(
-	function (first, second, third, fourth) {
-		return {first: first, fourth: fourth, second: second, third: third};
-	});
+var $author$project$Main$Ranking = function (first) {
+	return function (second) {
+		return function (third) {
+			return function (fourth) {
+				return function (fifth) {
+					return function (sixth) {
+						return function (seventh) {
+							return function (eighth) {
+								return function (ninth) {
+									return function (tenth) {
+										return {eighth: eighth, fifth: fifth, first: first, fourth: fourth, ninth: ninth, second: second, seventh: seventh, sixth: sixth, tenth: tenth, third: third};
+									};
+								};
+							};
+						};
+					};
+				};
+			};
+		};
+	};
+};
+var $NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$custom = $elm$json$Json$Decode$map2($elm$core$Basics$apR);
 var $elm$json$Json$Decode$field = _Json_decodeField;
-var $elm$json$Json$Decode$map4 = _Json_map4;
+var $NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required = F3(
+	function (key, valDecoder, decoder) {
+		return A2(
+			$NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$custom,
+			A2($elm$json$Json$Decode$field, key, valDecoder),
+			decoder);
+	});
 var $elm$json$Json$Decode$string = _Json_decodeString;
-var $author$project$Main$userDecoder = A5(
-	$elm$json$Json$Decode$map4,
-	$author$project$Main$CompanyRanking,
-	A2($elm$json$Json$Decode$field, 'first', $elm$json$Json$Decode$string),
-	A2($elm$json$Json$Decode$field, 'second', $elm$json$Json$Decode$string),
-	A2($elm$json$Json$Decode$field, 'third', $elm$json$Json$Decode$string),
-	A2($elm$json$Json$Decode$field, 'fourth', $elm$json$Json$Decode$string));
+var $author$project$Main$rankingDecoder = A3(
+	$NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+	'tenth',
+	$elm$json$Json$Decode$string,
+	A3(
+		$NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+		'ninth',
+		$elm$json$Json$Decode$string,
+		A3(
+			$NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+			'eighth',
+			$elm$json$Json$Decode$string,
+			A3(
+				$NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+				'seventh',
+				$elm$json$Json$Decode$string,
+				A3(
+					$NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+					'sixth',
+					$elm$json$Json$Decode$string,
+					A3(
+						$NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+						'fifth',
+						$elm$json$Json$Decode$string,
+						A3(
+							$NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+							'fourth',
+							$elm$json$Json$Decode$string,
+							A3(
+								$NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+								'third',
+								$elm$json$Json$Decode$string,
+								A3(
+									$NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+									'second',
+									$elm$json$Json$Decode$string,
+									A3(
+										$NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+										'first',
+										$elm$json$Json$Decode$string,
+										$elm$json$Json$Decode$succeed($author$project$Main$Ranking)))))))))));
+var $elm$http$Http$stringPart = _Http_pair;
 var $author$project$Main$update = F2(
 	function (msg, model) {
 		switch (msg.$) {
@@ -6186,7 +6244,7 @@ var $author$project$Main$update = F2(
 									[
 										A2($elm$http$Http$stringPart, 'sentence', model.input)
 									])),
-							expect: A2($elm$http$Http$expectJson, $author$project$Main$Receive, $author$project$Main$userDecoder),
+							expect: A2($elm$http$Http$expectJson, $author$project$Main$Receive, $author$project$Main$rankingDecoder),
 							url: 'https://es-analyzer.herokuapp.com/'
 						}));
 			default:
@@ -6283,6 +6341,12 @@ var $elm$html$Html$Events$onSubmit = function (msg) {
 			$elm$html$Html$Events$alwaysPreventDefault,
 			$elm$json$Json$Decode$succeed(msg)));
 };
+var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
+var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
+var $elm$html$Html$textarea = _VirtualDom_node('textarea');
+var $elm$core$Debug$toString = _Debug_toString;
+var $elm$core$String$trim = _String_trim;
+var $elm$html$Html$ul = _VirtualDom_node('ul');
 var $elm$json$Json$Encode$string = _Json_wrap;
 var $elm$html$Html$Attributes$stringProperty = F2(
 	function (key, string) {
@@ -6291,13 +6355,6 @@ var $elm$html$Html$Attributes$stringProperty = F2(
 			key,
 			$elm$json$Json$Encode$string(string));
 	});
-var $elm$html$Html$Attributes$placeholder = $elm$html$Html$Attributes$stringProperty('placeholder');
-var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
-var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
-var $elm$html$Html$textarea = _VirtualDom_node('textarea');
-var $elm$core$Debug$toString = _Debug_toString;
-var $elm$core$String$trim = _String_trim;
-var $elm$html$Html$ul = _VirtualDom_node('ul');
 var $elm$html$Html$Attributes$value = $elm$html$Html$Attributes$stringProperty('value');
 var $author$project$Main$view = function (model) {
 	return A2(
@@ -6319,7 +6376,6 @@ var $author$project$Main$view = function (model) {
 							[
 								$elm$html$Html$Events$onInput($author$project$Main$Input),
 								$elm$html$Html$Attributes$autofocus(true),
-								$elm$html$Html$Attributes$placeholder('GitHub name'),
 								$elm$html$Html$Attributes$value(model.input)
 							]),
 						_List_Nil),
@@ -6333,7 +6389,7 @@ var $author$project$Main$view = function (model) {
 							]),
 						_List_fromArray(
 							[
-								$elm$html$Html$text('Submit')
+								$elm$html$Html$text('分析する')
 							]))
 					])),
 				function () {
@@ -6342,7 +6398,7 @@ var $author$project$Main$view = function (model) {
 					case 'Init':
 						return $elm$html$Html$text('');
 					case 'Waiting':
-						return $elm$html$Html$text('Waiting...');
+						return $elm$html$Html$text('分析中...');
 					case 'Loaded':
 						var ranking = _v0.a;
 						return A2(
