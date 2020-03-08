@@ -2,7 +2,7 @@ module Main exposing (main)
 
 import Browser
 import Html exposing (..)
-import Html.Attributes exposing (autofocus, disabled, value)
+import Html.Attributes exposing (autofocus, disabled, id, value)
 import Html.Events exposing (..)
 import Http
 import Json.Decode exposing (Decoder, string, succeed)
@@ -85,40 +85,55 @@ update msg model =
 view : Model -> Html Msg
 view model =
     div []
-        [ Html.form [ onSubmit Send ]
+        [ h1 [ id "title" ]
+            [ text "ES-ANALYZER" ]
+        , p [ id "description" ]
+            [ text "約500社分のエントリーシートを学習したAI（機械学習）が、あなたの文章がどの企業のエントリーシートに似ているか分析します" ]
+        , ul [ id "heed" ]
+            [ li [] [ text "結果を本気にしないでください" ]
+            , li [] [ text "このアプリは複数の就活サイトに掲載されているエントリーシートを分析した結果をもとに作られています" ]
+            ]
+        , Html.form [ onSubmit Send, id "inputForm" ]
             [ textarea
                 [ onInput Input
                 , autofocus True
                 , value model.input
                 ]
                 []
-            , button
-                [ disabled
-                    ((model.state == Waiting)
-                        || String.isEmpty (String.trim model.input)
-                    )
+            , p []
+                [ button
+                    [ disabled
+                        ((model.state == Waiting)
+                            || String.isEmpty (String.trim model.input)
+                        )
+                    ]
+                    [ text "分析する" ]
                 ]
-                [ text "分析する" ]
             ]
         , case model.state of
             Init ->
                 text ""
 
             Waiting ->
-                text "分析中..."
+                div [ id "waiting" ]
+                    [ text "分析中…" ]
 
             Loaded ranking ->
-                ul []
-                    [ li [] [ text "1位\u{3000}", text ranking.first ]
-                    , li [] [ text "2位\u{3000}", text ranking.second ]
-                    , li [] [ text "3位\u{3000}", text ranking.third ]
-                    , li [] [ text "4位\u{3000}", text ranking.fourth ]
-                    , li [] [ text "5位\u{3000}", text ranking.fifth ]
-                    , li [] [ text "6位\u{3000}", text ranking.sixth ]
-                    , li [] [ text "7位\u{3000}", text ranking.seventh ]
-                    , li [] [ text "8位\u{3000}", text ranking.eighth ]
-                    , li [] [ text "9位\u{3000}", text ranking.ninth ]
-                    , li [] [ text "10位 ", text ranking.tenth ]
+                div [ id "result" ]
+                    [ ul [ id "ranking" ]
+                        [ li [] [ text "1位\u{3000}", text ranking.first ]
+                        , li [] [ text "2位\u{3000}", text ranking.second ]
+                        , li [] [ text "3位\u{3000}", text ranking.third ]
+                        , li [] [ text "4位\u{3000}", text ranking.fourth ]
+                        , li [] [ text "5位\u{3000}", text ranking.fifth ]
+                        , li [] [ text "6位\u{3000}", text ranking.sixth ]
+                        , li [] [ text "7位\u{3000}", text ranking.seventh ]
+                        , li [] [ text "8位\u{3000}", text ranking.eighth ]
+                        , li [] [ text "9位\u{3000}", text ranking.ninth ]
+                        , li [] [ text "10位 ", text ranking.tenth ]
+                        ]
+                    , p [] [ text "結果をツイートしてみよう" ]
+                    , button [] [ text "Tweet" ]
                     ]
 
             Failed e ->

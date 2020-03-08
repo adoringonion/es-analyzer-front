@@ -1,0 +1,41 @@
+body {
+    text-align: center;
+    background-color: brown;
+    min-width: 350px;
+    max-width: 100%;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+h1 {
+    background-color: darksalmon;
+    font-weight: bold;
+    font-size: 4em;
+    padding: 10%;
+}
+
+#description {
+    background-color: darkkhaki;
+    padding: 5%;
+    font-size: x-large;
+}
+
+#heed {
+    list-style: none;
+}
+
+#result {
+    background-color: darkblue;
+}
+
+#ranking {
+    background-color: darkslategrey;
+    list-style: none;
+}
+
+#waiting {
+    background-color: slateblue;
+}
+
+#inputForm {
+    background-color: tomato;
+}

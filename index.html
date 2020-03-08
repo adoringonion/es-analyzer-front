@@ -1,19 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="jp">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="elm.js"></script>
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <title>ES-Analyzer</title>
 </head>
 
 <body>
-    <div id="elm"></div>
+    <main></main>
     <script>
         var app = Elm.Main.init({
-            node: document.getElementById('elm')
-        });
+            node: document.querySelector('main')
+        })
     </script>
 </body>
 

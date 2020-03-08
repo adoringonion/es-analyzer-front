@@ -6272,6 +6272,16 @@ var $elm$html$Html$button = _VirtualDom_node('button');
 var $elm$html$Html$Attributes$disabled = $elm$html$Html$Attributes$boolProperty('disabled');
 var $elm$html$Html$div = _VirtualDom_node('div');
 var $elm$html$Html$form = _VirtualDom_node('form');
+var $elm$html$Html$h1 = _VirtualDom_node('h1');
+var $elm$json$Json$Encode$string = _Json_wrap;
+var $elm$html$Html$Attributes$stringProperty = F2(
+	function (key, string) {
+		return A2(
+			_VirtualDom_property,
+			key,
+			$elm$json$Json$Encode$string(string));
+	});
+var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
 var $elm$html$Html$li = _VirtualDom_node('li');
 var $elm$html$Html$Events$alwaysStop = function (x) {
 	return _Utils_Tuple2(x, true);
@@ -6327,20 +6337,13 @@ var $elm$html$Html$Events$onSubmit = function (msg) {
 			$elm$html$Html$Events$alwaysPreventDefault,
 			$elm$json$Json$Decode$succeed(msg)));
 };
+var $elm$html$Html$p = _VirtualDom_node('p');
 var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
 var $elm$html$Html$textarea = _VirtualDom_node('textarea');
 var $elm$core$Debug$toString = _Debug_toString;
 var $elm$core$String$trim = _String_trim;
 var $elm$html$Html$ul = _VirtualDom_node('ul');
-var $elm$json$Json$Encode$string = _Json_wrap;
-var $elm$html$Html$Attributes$stringProperty = F2(
-	function (key, string) {
-		return A2(
-			_VirtualDom_property,
-			key,
-			$elm$json$Json$Encode$string(string));
-	});
 var $elm$html$Html$Attributes$value = $elm$html$Html$Attributes$stringProperty('value');
 var $author$project$Main$view = function (model) {
 	return A2(
@@ -6349,10 +6352,54 @@ var $author$project$Main$view = function (model) {
 		_List_fromArray(
 			[
 				A2(
+				$elm$html$Html$h1,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$id('title')
+					]),
+				_List_fromArray(
+					[
+						$elm$html$Html$text('ES-ANALYZER')
+					])),
+				A2(
+				$elm$html$Html$p,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$id('description')
+					]),
+				_List_fromArray(
+					[
+						$elm$html$Html$text('約500社分のエントリーシートを学習したAI（機械学習）が、あなたの文章がどの企業のエントリーシートに似ているか分析します')
+					])),
+				A2(
+				$elm$html$Html$ul,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$id('heed')
+					]),
+				_List_fromArray(
+					[
+						A2(
+						$elm$html$Html$li,
+						_List_Nil,
+						_List_fromArray(
+							[
+								$elm$html$Html$text('結果を本気にしないでください')
+							])),
+						A2(
+						$elm$html$Html$li,
+						_List_Nil,
+						_List_fromArray(
+							[
+								$elm$html$Html$text('このアプリは複数の就活サイトに掲載されているエントリーシートを分析した結果をもとに作られています')
+							]))
+					])),
+				A2(
 				$elm$html$Html$form,
 				_List_fromArray(
 					[
-						$elm$html$Html$Events$onSubmit($author$project$Main$Send)
+						$elm$html$Html$Events$onSubmit($author$project$Main$Send),
+						$elm$html$Html$Attributes$id('inputForm')
 					]),
 				_List_fromArray(
 					[
@@ -6366,16 +6413,22 @@ var $author$project$Main$view = function (model) {
 							]),
 						_List_Nil),
 						A2(
-						$elm$html$Html$button,
+						$elm$html$Html$p,
+						_List_Nil,
 						_List_fromArray(
 							[
-								$elm$html$Html$Attributes$disabled(
-								_Utils_eq(model.state, $author$project$Main$Waiting) || $elm$core$String$isEmpty(
-									$elm$core$String$trim(model.input)))
-							]),
-						_List_fromArray(
-							[
-								$elm$html$Html$text('分析する')
+								A2(
+								$elm$html$Html$button,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$disabled(
+										_Utils_eq(model.state, $author$project$Main$Waiting) || $elm$core$String$isEmpty(
+											$elm$core$String$trim(model.input)))
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('分析する')
+									]))
 							]))
 					])),
 				function () {
@@ -6384,93 +6437,128 @@ var $author$project$Main$view = function (model) {
 					case 'Init':
 						return $elm$html$Html$text('');
 					case 'Waiting':
-						return $elm$html$Html$text('分析中...');
+						return A2(
+							$elm$html$Html$div,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$id('waiting')
+								]),
+							_List_fromArray(
+								[
+									$elm$html$Html$text('分析中…')
+								]));
 					case 'Loaded':
 						var ranking = _v0.a;
 						return A2(
-							$elm$html$Html$ul,
-							_List_Nil,
+							$elm$html$Html$div,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$id('result')
+								]),
 							_List_fromArray(
 								[
 									A2(
-									$elm$html$Html$li,
-									_List_Nil,
+									$elm$html$Html$ul,
 									_List_fromArray(
 										[
-											$elm$html$Html$text('1位\u3000'),
-											$elm$html$Html$text(ranking.first)
+											$elm$html$Html$Attributes$id('ranking')
+										]),
+									_List_fromArray(
+										[
+											A2(
+											$elm$html$Html$li,
+											_List_Nil,
+											_List_fromArray(
+												[
+													$elm$html$Html$text('1位\u3000'),
+													$elm$html$Html$text(ranking.first)
+												])),
+											A2(
+											$elm$html$Html$li,
+											_List_Nil,
+											_List_fromArray(
+												[
+													$elm$html$Html$text('2位\u3000'),
+													$elm$html$Html$text(ranking.second)
+												])),
+											A2(
+											$elm$html$Html$li,
+											_List_Nil,
+											_List_fromArray(
+												[
+													$elm$html$Html$text('3位\u3000'),
+													$elm$html$Html$text(ranking.third)
+												])),
+											A2(
+											$elm$html$Html$li,
+											_List_Nil,
+											_List_fromArray(
+												[
+													$elm$html$Html$text('4位\u3000'),
+													$elm$html$Html$text(ranking.fourth)
+												])),
+											A2(
+											$elm$html$Html$li,
+											_List_Nil,
+											_List_fromArray(
+												[
+													$elm$html$Html$text('5位\u3000'),
+													$elm$html$Html$text(ranking.fifth)
+												])),
+											A2(
+											$elm$html$Html$li,
+											_List_Nil,
+											_List_fromArray(
+												[
+													$elm$html$Html$text('6位\u3000'),
+													$elm$html$Html$text(ranking.sixth)
+												])),
+											A2(
+											$elm$html$Html$li,
+											_List_Nil,
+											_List_fromArray(
+												[
+													$elm$html$Html$text('7位\u3000'),
+													$elm$html$Html$text(ranking.seventh)
+												])),
+											A2(
+											$elm$html$Html$li,
+											_List_Nil,
+											_List_fromArray(
+												[
+													$elm$html$Html$text('8位\u3000'),
+													$elm$html$Html$text(ranking.eighth)
+												])),
+											A2(
+											$elm$html$Html$li,
+											_List_Nil,
+											_List_fromArray(
+												[
+													$elm$html$Html$text('9位\u3000'),
+													$elm$html$Html$text(ranking.ninth)
+												])),
+											A2(
+											$elm$html$Html$li,
+											_List_Nil,
+											_List_fromArray(
+												[
+													$elm$html$Html$text('10位 '),
+													$elm$html$Html$text(ranking.tenth)
+												]))
 										])),
 									A2(
-									$elm$html$Html$li,
+									$elm$html$Html$p,
 									_List_Nil,
 									_List_fromArray(
 										[
-											$elm$html$Html$text('2位\u3000'),
-											$elm$html$Html$text(ranking.second)
+											$elm$html$Html$text('結果をツイートしてみよう')
 										])),
 									A2(
-									$elm$html$Html$li,
+									$elm$html$Html$button,
 									_List_Nil,
 									_List_fromArray(
 										[
-											$elm$html$Html$text('3位\u3000'),
-											$elm$html$Html$text(ranking.third)
-										])),
-									A2(
-									$elm$html$Html$li,
-									_List_Nil,
-									_List_fromArray(
-										[
-											$elm$html$Html$text('4位\u3000'),
-											$elm$html$Html$text(ranking.fourth)
-										])),
-									A2(
-									$elm$html$Html$li,
-									_List_Nil,
-									_List_fromArray(
-										[
-											$elm$html$Html$text('5位\u3000'),
-											$elm$html$Html$text(ranking.fifth)
-										])),
-									A2(
-									$elm$html$Html$li,
-									_List_Nil,
-									_List_fromArray(
-										[
-											$elm$html$Html$text('6位\u3000'),
-											$elm$html$Html$text(ranking.sixth)
-										])),
-									A2(
-									$elm$html$Html$li,
-									_List_Nil,
-									_List_fromArray(
-										[
-											$elm$html$Html$text('7位\u3000'),
-											$elm$html$Html$text(ranking.seventh)
-										])),
-									A2(
-									$elm$html$Html$li,
-									_List_Nil,
-									_List_fromArray(
-										[
-											$elm$html$Html$text('8位\u3000'),
-											$elm$html$Html$text(ranking.eighth)
-										])),
-									A2(
-									$elm$html$Html$li,
-									_List_Nil,
-									_List_fromArray(
-										[
-											$elm$html$Html$text('9位\u3000'),
-											$elm$html$Html$text(ranking.ninth)
-										])),
-									A2(
-									$elm$html$Html$li,
-									_List_Nil,
-									_List_fromArray(
-										[
-											$elm$html$Html$text('10位 '),
-											$elm$html$Html$text(ranking.tenth)
+											$elm$html$Html$text('Tweet')
 										]))
 								]));
 					default:
