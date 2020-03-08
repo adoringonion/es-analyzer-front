@@ -74,6 +74,7 @@ h1 {
 #inputForm {
     height: 30vh;
     font-size: 2vw;
+    background-color: royalblue;
 }
 
 textarea {
@@ -136,8 +137,33 @@ button:disabled {
 }
 
 #loader {
-    font-size: 1vw;
+    font-size: 3vw;
     font-weight: bold;
     height: 20vw;
     color: white;
+}
+
+#result {
+    animation: fadeIn 1s ease 0s 1 normal;
+    -webkit-animation: fadeIn 1s ease 0s 1 normal;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0
+    }
+
+    100% {
+        opacity: 1
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0
+    }
+
+    100% {
+        opacity: 1
+    }
 }
