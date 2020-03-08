@@ -6395,55 +6395,54 @@ var $author$project$Main$view = function (model) {
 								$elm$html$Html$text('あなたの文章がどの企業のエントリーシートに似ているか分析します')
 							]))
 					])),
-				A2(
-				$elm$html$Html$form,
-				_List_fromArray(
-					[
-						$elm$html$Html$Events$onSubmit($author$project$Main$Send),
-						$elm$html$Html$Attributes$id('inputForm'),
-						$elm$html$Html$Attributes$class('center')
-					]),
-				_List_fromArray(
-					[
-						A2(
-						$elm$html$Html$textarea,
-						_List_fromArray(
-							[
-								$elm$html$Html$Events$onInput($author$project$Main$Input),
-								$elm$html$Html$Attributes$value(model.input)
-							]),
-						_List_Nil),
-						A2(
-						$elm$html$Html$p,
-						_List_Nil,
-						_List_fromArray(
-							[
-								A2(
-								$elm$html$Html$button,
-								_List_fromArray(
-									[
-										$elm$html$Html$Attributes$disabled(
-										_Utils_eq(model.state, $author$project$Main$Waiting) || $elm$core$String$isEmpty(
-											$elm$core$String$trim(model.input))),
-										$elm$html$Html$Attributes$id('analyzeButton')
-									]),
-								_List_fromArray(
-									[
-										$elm$html$Html$text('分析する')
-									]))
-							]))
-					])),
 				function () {
 				var _v0 = model.state;
 				switch (_v0.$) {
 					case 'Init':
-						return $elm$html$Html$text('');
+						return A2(
+							$elm$html$Html$form,
+							_List_fromArray(
+								[
+									$elm$html$Html$Events$onSubmit($author$project$Main$Send),
+									$elm$html$Html$Attributes$id('inputForm'),
+									$elm$html$Html$Attributes$class('center')
+								]),
+							_List_fromArray(
+								[
+									A2(
+									$elm$html$Html$textarea,
+									_List_fromArray(
+										[
+											$elm$html$Html$Events$onInput($author$project$Main$Input),
+											$elm$html$Html$Attributes$value(model.input)
+										]),
+									_List_Nil),
+									A2(
+									$elm$html$Html$p,
+									_List_Nil,
+									_List_fromArray(
+										[
+											A2(
+											$elm$html$Html$button,
+											_List_fromArray(
+												[
+													$elm$html$Html$Attributes$disabled(
+													_Utils_eq(model.state, $author$project$Main$Waiting) || $elm$core$String$isEmpty(
+														$elm$core$String$trim(model.input))),
+													$elm$html$Html$Attributes$id('analyzeButton')
+												]),
+											_List_fromArray(
+												[
+													$elm$html$Html$text('分析する')
+												]))
+										]))
+								]));
 					case 'Waiting':
 						return A2(
 							$elm$html$Html$div,
 							_List_fromArray(
 								[
-									$elm$html$Html$Attributes$id('waiting'),
+									$elm$html$Html$Attributes$id('loader'),
 									$elm$html$Html$Attributes$class('center')
 								]),
 							_List_fromArray(
@@ -6461,6 +6460,44 @@ var $author$project$Main$view = function (model) {
 								]),
 							_List_fromArray(
 								[
+									A2(
+									$elm$html$Html$form,
+									_List_fromArray(
+										[
+											$elm$html$Html$Events$onSubmit($author$project$Main$Send),
+											$elm$html$Html$Attributes$id('inputForm'),
+											$elm$html$Html$Attributes$class('center')
+										]),
+									_List_fromArray(
+										[
+											A2(
+											$elm$html$Html$textarea,
+											_List_fromArray(
+												[
+													$elm$html$Html$Events$onInput($author$project$Main$Input),
+													$elm$html$Html$Attributes$value(model.input)
+												]),
+											_List_Nil),
+											A2(
+											$elm$html$Html$p,
+											_List_Nil,
+											_List_fromArray(
+												[
+													A2(
+													$elm$html$Html$button,
+													_List_fromArray(
+														[
+															$elm$html$Html$Attributes$disabled(
+															_Utils_eq(model.state, $author$project$Main$Waiting) || $elm$core$String$isEmpty(
+																$elm$core$String$trim(model.input))),
+															$elm$html$Html$Attributes$id('analyzeButton')
+														]),
+													_List_fromArray(
+														[
+															$elm$html$Html$text('分析する')
+														]))
+												]))
+										])),
 									A2(
 									$elm$html$Html$ul,
 									_List_fromArray(

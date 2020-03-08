@@ -99,34 +99,50 @@ view model =
             --     , li [] [ text "このアプリは複数の就活サイトに掲載されているエントリーシートを分析した結果をもとに作られています" ]
             --     ]
             ]
-        , Html.form [ onSubmit Send, id "inputForm", class "center" ]
-            [ textarea
-                [ onInput Input
-                , value model.input
-                ]
-                []
-            , p []
-                [ button
-                    [ disabled
-                        ((model.state == Waiting)
-                            || String.isEmpty (String.trim model.input)
-                        )
-                    , id "analyzeButton"
-                    ]
-                    [ text "分析する" ]
-                ]
-            ]
         , case model.state of
             Init ->
-                text ""
+                Html.form [ onSubmit Send, id "inputForm", class "center" ]
+                    [ textarea
+                        [ onInput Input
+                        , value model.input
+                        ]
+                        []
+                    , p []
+                        [ button
+                            [ disabled
+                                ((model.state == Waiting)
+                                    || String.isEmpty (String.trim model.input)
+                                )
+                            , id "analyzeButton"
+                            ]
+                            [ text "分析する" ]
+                        ]
+                    ]
 
             Waiting ->
-                div [ id "waiting", class "center" ]
+                div [ id "loader", class "center" ]
                     [ text "分析中…" ]
 
             Loaded ranking ->
                 div [ id "result", class "center" ]
-                    [ ul [ id "ranking" ]
+                    [ Html.form [ onSubmit Send, id "inputForm", class "center" ]
+                        [ textarea
+                            [ onInput Input
+                            , value model.input
+                            ]
+                            []
+                        , p []
+                            [ button
+                                [ disabled
+                                    ((model.state == Waiting)
+                                        || String.isEmpty (String.trim model.input)
+                                    )
+                                , id "analyzeButton"
+                                ]
+                                [ text "分析する" ]
+                            ]
+                        ]
+                    , ul [ id "ranking" ]
                         [ li [] [ text "1位\u{3000}", text ranking.first ]
                         , li [] [ text "2位\u{3000}", text ranking.second ]
                         , li [] [ text "3位\u{3000}", text ranking.third ]

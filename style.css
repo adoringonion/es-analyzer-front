@@ -1,5 +1,6 @@
 html {
     font-family: 'Noto Sans JP', sans-serif;
+    background-color: royalblue;
 }
 
 body {
@@ -11,6 +12,7 @@ body {
 h1 {
     height: 100vh;
     margin: 0;
+    color: white;
 }
 
 @media screen and (max-width: 780px) {
@@ -25,6 +27,10 @@ h1 {
     #description {
         font-size: 3vw;
     }
+
+    #ranking {
+        font-size: 4vw;
+    }
 }
 
 @media screen and (min-width: 780px) and (max-width: 1200px) {
@@ -35,6 +41,11 @@ h1 {
     #description {
         font-size: 2.5vw;
     }
+
+    #ranking {
+        font-size: 4.5vw;
+    }
+
 }
 
 @media screen and (min-width: 1200px) {
@@ -44,12 +55,18 @@ h1 {
 
     #description {
         font-size: 1.5vw;
+        margin-bottom: 5%;
+    }
+
+    #ranking {
+        font-size: 1vw;
     }
 }
 
 #description {
     height: 25vh;
     font-weight: bold;
+    color: white;
 }
 
 
@@ -60,21 +77,17 @@ h1 {
 }
 
 textarea {
-    width: 60%;
-    height: 40%;
-    border: 2px solid royalblue;
+    width: 60vw;
+    height: 20vh;
+    border: 3px solid white;
     resize: none;
 }
 
 .center {
     display: flex;
-    /* 要素をflexboxに対応させる */
     align-items: center;
-    /* 縦方向の中央揃え */
     justify-content: center;
-    /* 横方向の中央揃え */
     flex-direction: column;
-    /* 子要素の並びを上から下にする（要素の改行に対応） */
     width: 100%;
 }
 
@@ -82,18 +95,14 @@ li {
     list-style: none;
 }
 
-#ranking {
-    font-size: 3.6vw;
-}
-
 button {
     display: inline-block;
-    max-width: 180px;
+    max-width: 300px;
     text-align: left;
-    border: 2px solid royalblue;
+    border: 2px solid white;
     font-size: 16px;
-    color: royalblue;
-    background-color: white;
+    color: white;
+    background-color: royalblue;
     text-decoration: none;
     font-weight: bold;
     padding: 8px 16px;
@@ -102,9 +111,9 @@ button {
 }
 
 button:hover {
-    background-color: #9ec34b;
-    border-color: #cbe585;
-    color: #FFF;
+    background-color: white;
+    border-color: white;
+    color: royalblue;
 }
 
 button:disabled {
@@ -118,5 +127,17 @@ button:disabled {
 }
 
 #tweetButton {
-    margin-top: 10%;
+    margin: 5%;
+}
+
+#ranking {
+    font-weight: bold;
+    color: white;
+}
+
+#loader {
+    font-size: 1vw;
+    font-weight: bold;
+    height: 20vw;
+    color: white;
 }
