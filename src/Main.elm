@@ -61,8 +61,7 @@ update msg model =
 
         Send ->
             ( { model
-                | input = ""
-                , state = Waiting
+                | state = Waiting
               }
             , Http.post
                 { url = "https://es-analyzer.herokuapp.com/"
