@@ -2,7 +2,7 @@ module Main exposing (main)
 
 import Browser
 import Html exposing (..)
-import Html.Attributes exposing (autofocus, class, disabled, id, value)
+import Html.Attributes exposing (autofocus, class, disabled, href, id, value)
 import Html.Events exposing (..)
 import Http
 import Json.Decode exposing (Decoder, string, succeed)
@@ -124,6 +124,43 @@ view model =
                     [ text "分析中…" ]
 
             Loaded ranking ->
+                let
+                    tweetText =
+                        "http://twitter.com/share?url="
+                            ++ "https://es-analyzer.com/"
+                            ++ "&text="
+                            ++ "あなたのESに似ている企業は%0a%0a"
+                            ++ "1位%20"
+                            ++ ranking.first
+                            ++ "%0a"
+                            ++ "2位%20"
+                            ++ ranking.second
+                            ++ "%0a"
+                            ++ "3位%20"
+                            ++ ranking.third
+                            ++ "%0a"
+                            ++ "4位%20"
+                            ++ ranking.fourth
+                            ++ "%0a"
+                            ++ "5位%20"
+                            ++ ranking.fifth
+                            ++ "%0a"
+                            ++ "6位%20"
+                            ++ ranking.sixth
+                            ++ "%0a"
+                            ++ "7位%20"
+                            ++ ranking.seventh
+                            ++ "%0a"
+                            ++ "8位%20"
+                            ++ ranking.eighth
+                            ++ "%0a"
+                            ++ "9位%20"
+                            ++ ranking.ninth
+                            ++ "%0a"
+                            ++ "10位%20"
+                            ++ ranking.tenth
+                            ++ "%0a"
+                in
                 div [ id "result", class "center" ]
                     [ Html.form [ onSubmit Send, id "inputForm", class "center" ]
                         [ textarea
@@ -154,7 +191,7 @@ view model =
                         , li [] [ text "9位\u{3000}", text ranking.ninth ]
                         , li [] [ text "10位 ", text ranking.tenth ]
                         ]
-                    , button [ id "tweetButton" ] [ text "結果をツイートする" ]
+                    , a [ id "tweetButton", href tweetText ] [ text "結果をツイートする" ]
                     ]
 
             Failed e ->

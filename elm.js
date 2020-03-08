@@ -6259,6 +6259,7 @@ var $author$project$Main$Input = function (a) {
 	return {$: 'Input', a: a};
 };
 var $author$project$Main$Send = {$: 'Send'};
+var $elm$html$Html$a = _VirtualDom_node('a');
 var $elm$html$Html$button = _VirtualDom_node('button');
 var $elm$json$Json$Encode$string = _Json_wrap;
 var $elm$html$Html$Attributes$stringProperty = F2(
@@ -6281,6 +6282,12 @@ var $elm$html$Html$Attributes$disabled = $elm$html$Html$Attributes$boolProperty(
 var $elm$html$Html$div = _VirtualDom_node('div');
 var $elm$html$Html$form = _VirtualDom_node('form');
 var $elm$html$Html$h1 = _VirtualDom_node('h1');
+var $elm$html$Html$Attributes$href = function (url) {
+	return A2(
+		$elm$html$Html$Attributes$stringProperty,
+		'href',
+		_VirtualDom_noJavaScriptUri(url));
+};
 var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
 var $elm$html$Html$li = _VirtualDom_node('li');
 var $elm$html$Html$Events$alwaysStop = function (x) {
@@ -6451,6 +6458,7 @@ var $author$project$Main$view = function (model) {
 								]));
 					case 'Loaded':
 						var ranking = _v0.a;
+						var tweetText = 'http://twitter.com/share?url=' + ('https://es-analyzer.com/' + ('&text=' + ('あなたのESに似ている企業は%0a%0a' + ('1位%20' + (ranking.first + ('%0a' + ('2位%20' + (ranking.second + ('%0a' + ('3位%20' + (ranking.third + ('%0a' + ('4位%20' + (ranking.fourth + ('%0a' + ('5位%20' + (ranking.fifth + ('%0a' + ('6位%20' + (ranking.sixth + ('%0a' + ('7位%20' + (ranking.seventh + ('%0a' + ('8位%20' + (ranking.eighth + ('%0a' + ('9位%20' + (ranking.ninth + ('%0a' + ('10位%20' + (ranking.tenth + '%0a'))))))))))))))))))))))))))))))));
 						return A2(
 							$elm$html$Html$div,
 							_List_fromArray(
@@ -6588,10 +6596,11 @@ var $author$project$Main$view = function (model) {
 												]))
 										])),
 									A2(
-									$elm$html$Html$button,
+									$elm$html$Html$a,
 									_List_fromArray(
 										[
-											$elm$html$Html$Attributes$id('tweetButton')
+											$elm$html$Html$Attributes$id('tweetButton'),
+											$elm$html$Html$Attributes$href(tweetText)
 										]),
 									_List_fromArray(
 										[
