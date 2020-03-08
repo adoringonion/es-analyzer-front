@@ -109,8 +109,16 @@ view model =
 
             Loaded ranking ->
                 ul []
-                    [ li [] [ text ranking.first ]
-                    , li [] [ text ranking.second ]
+                    [ li [] [ text "1位\u{3000}", text ranking.first ]
+                    , li [] [ text "2位\u{3000}", text ranking.second ]
+                    , li [] [ text "3位\u{3000}", text ranking.third ]
+                    , li [] [ text "4位\u{3000}", text ranking.fourth ]
+                    , li [] [ text "5位\u{3000}", text ranking.fifth ]
+                    , li [] [ text "6位\u{3000}", text ranking.sixth ]
+                    , li [] [ text "7位\u{3000}", text ranking.seventh ]
+                    , li [] [ text "8位\u{3000}", text ranking.eighth ]
+                    , li [] [ text "9位\u{3000}", text ranking.ninth ]
+                    , li [] [ text "10位 ", text ranking.tenth ]
                     ]
 
             Failed e ->
