@@ -6222,7 +6222,7 @@ var $author$project$Main$update = F2(
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{input: '', state: $author$project$Main$Waiting}),
+						{state: $author$project$Main$Waiting}),
 					$elm$http$Http$post(
 						{
 							body: $elm$http$Http$multipartBody(
