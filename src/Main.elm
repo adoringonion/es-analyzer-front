@@ -2,7 +2,7 @@ module Main exposing (main)
 
 import Browser
 import Html exposing (..)
-import Html.Attributes exposing (autofocus, disabled, id, value)
+import Html.Attributes exposing (autofocus, class, disabled, id, value)
 import Html.Events exposing (..)
 import Http
 import Json.Decode exposing (Decoder, string, succeed)
@@ -84,19 +84,24 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    div []
-        [ h1 [ id "title" ]
+    div [ id "container" ]
+        [ h1 [ id "title", class "center" ]
             [ text "ES-ANALYZER" ]
-        , p [ id "description" ]
-            [ text "約500社分のエントリーシートを学習したAI（機械学習）が、あなたの文章がどの企業のエントリーシートに似ているか分析します" ]
-        , ul [ id "heed" ]
-            [ li [] [ text "結果を本気にしないでください" ]
-            , li [] [ text "このアプリは複数の就活サイトに掲載されているエントリーシートを分析した結果をもとに作られています" ]
+        , div [ id "description", class "center" ]
+            [ p [ id "desc" ]
+                [ text "約500社分のエントリーシートを学習したAI（機械学習）が" ]
+            , p [ id "desc2" ]
+                [ text "あなたの文章がどの企業のエントリーシートに似ているか分析します" ]
+
+            -- , ul [ id "heed" ]
+            --     [ li [] [ text "結果を本気にしないでください" ]
+            --     , li [] [ text "分析結果は毎回少し変動します" ]
+            --     , li [] [ text "このアプリは複数の就活サイトに掲載されているエントリーシートを分析した結果をもとに作られています" ]
+            --     ]
             ]
-        , Html.form [ onSubmit Send, id "inputForm" ]
+        , Html.form [ onSubmit Send, id "inputForm", class "center" ]
             [ textarea
                 [ onInput Input
-                , autofocus True
                 , value model.input
                 ]
                 []
@@ -106,6 +111,7 @@ view model =
                         ((model.state == Waiting)
                             || String.isEmpty (String.trim model.input)
                         )
+                    , id "analyzeButton"
                     ]
                     [ text "分析する" ]
                 ]
@@ -115,11 +121,11 @@ view model =
                 text ""
 
             Waiting ->
-                div [ id "waiting" ]
+                div [ id "waiting", class "center" ]
                     [ text "分析中…" ]
 
             Loaded ranking ->
-                div [ id "result" ]
+                div [ id "result", class "center" ]
                     [ ul [ id "ranking" ]
                         [ li [] [ text "1位\u{3000}", text ranking.first ]
                         , li [] [ text "2位\u{3000}", text ranking.second ]
@@ -132,8 +138,7 @@ view model =
                         , li [] [ text "9位\u{3000}", text ranking.ninth ]
                         , li [] [ text "10位 ", text ranking.tenth ]
                         ]
-                    , p [] [ text "結果をツイートしてみよう" ]
-                    , button [] [ text "Tweet" ]
+                    , button [ id "tweetButton" ] [ text "結果をツイートする" ]
                     ]
 
             Failed e ->

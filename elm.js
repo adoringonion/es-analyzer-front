@@ -6259,20 +6259,7 @@ var $author$project$Main$Input = function (a) {
 	return {$: 'Input', a: a};
 };
 var $author$project$Main$Send = {$: 'Send'};
-var $elm$json$Json$Encode$bool = _Json_wrap;
-var $elm$html$Html$Attributes$boolProperty = F2(
-	function (key, bool) {
-		return A2(
-			_VirtualDom_property,
-			key,
-			$elm$json$Json$Encode$bool(bool));
-	});
-var $elm$html$Html$Attributes$autofocus = $elm$html$Html$Attributes$boolProperty('autofocus');
 var $elm$html$Html$button = _VirtualDom_node('button');
-var $elm$html$Html$Attributes$disabled = $elm$html$Html$Attributes$boolProperty('disabled');
-var $elm$html$Html$div = _VirtualDom_node('div');
-var $elm$html$Html$form = _VirtualDom_node('form');
-var $elm$html$Html$h1 = _VirtualDom_node('h1');
 var $elm$json$Json$Encode$string = _Json_wrap;
 var $elm$html$Html$Attributes$stringProperty = F2(
 	function (key, string) {
@@ -6281,6 +6268,19 @@ var $elm$html$Html$Attributes$stringProperty = F2(
 			key,
 			$elm$json$Json$Encode$string(string));
 	});
+var $elm$html$Html$Attributes$class = $elm$html$Html$Attributes$stringProperty('className');
+var $elm$json$Json$Encode$bool = _Json_wrap;
+var $elm$html$Html$Attributes$boolProperty = F2(
+	function (key, bool) {
+		return A2(
+			_VirtualDom_property,
+			key,
+			$elm$json$Json$Encode$bool(bool));
+	});
+var $elm$html$Html$Attributes$disabled = $elm$html$Html$Attributes$boolProperty('disabled');
+var $elm$html$Html$div = _VirtualDom_node('div');
+var $elm$html$Html$form = _VirtualDom_node('form');
+var $elm$html$Html$h1 = _VirtualDom_node('h1');
 var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
 var $elm$html$Html$li = _VirtualDom_node('li');
 var $elm$html$Html$Events$alwaysStop = function (x) {
@@ -6348,50 +6348,51 @@ var $elm$html$Html$Attributes$value = $elm$html$Html$Attributes$stringProperty('
 var $author$project$Main$view = function (model) {
 	return A2(
 		$elm$html$Html$div,
-		_List_Nil,
+		_List_fromArray(
+			[
+				$elm$html$Html$Attributes$id('container')
+			]),
 		_List_fromArray(
 			[
 				A2(
 				$elm$html$Html$h1,
 				_List_fromArray(
 					[
-						$elm$html$Html$Attributes$id('title')
+						$elm$html$Html$Attributes$id('title'),
+						$elm$html$Html$Attributes$class('center')
 					]),
 				_List_fromArray(
 					[
 						$elm$html$Html$text('ES-ANALYZER')
 					])),
 				A2(
-				$elm$html$Html$p,
+				$elm$html$Html$div,
 				_List_fromArray(
 					[
-						$elm$html$Html$Attributes$id('description')
-					]),
-				_List_fromArray(
-					[
-						$elm$html$Html$text('約500社分のエントリーシートを学習したAI（機械学習）が、あなたの文章がどの企業のエントリーシートに似ているか分析します')
-					])),
-				A2(
-				$elm$html$Html$ul,
-				_List_fromArray(
-					[
-						$elm$html$Html$Attributes$id('heed')
+						$elm$html$Html$Attributes$id('description'),
+						$elm$html$Html$Attributes$class('center')
 					]),
 				_List_fromArray(
 					[
 						A2(
-						$elm$html$Html$li,
-						_List_Nil,
+						$elm$html$Html$p,
 						_List_fromArray(
 							[
-								$elm$html$Html$text('結果を本気にしないでください')
+								$elm$html$Html$Attributes$id('desc')
+							]),
+						_List_fromArray(
+							[
+								$elm$html$Html$text('約500社分のエントリーシートを学習したAI（機械学習）が')
 							])),
 						A2(
-						$elm$html$Html$li,
-						_List_Nil,
+						$elm$html$Html$p,
 						_List_fromArray(
 							[
-								$elm$html$Html$text('このアプリは複数の就活サイトに掲載されているエントリーシートを分析した結果をもとに作られています')
+								$elm$html$Html$Attributes$id('desc2')
+							]),
+						_List_fromArray(
+							[
+								$elm$html$Html$text('あなたの文章がどの企業のエントリーシートに似ているか分析します')
 							]))
 					])),
 				A2(
@@ -6399,7 +6400,8 @@ var $author$project$Main$view = function (model) {
 				_List_fromArray(
 					[
 						$elm$html$Html$Events$onSubmit($author$project$Main$Send),
-						$elm$html$Html$Attributes$id('inputForm')
+						$elm$html$Html$Attributes$id('inputForm'),
+						$elm$html$Html$Attributes$class('center')
 					]),
 				_List_fromArray(
 					[
@@ -6408,7 +6410,6 @@ var $author$project$Main$view = function (model) {
 						_List_fromArray(
 							[
 								$elm$html$Html$Events$onInput($author$project$Main$Input),
-								$elm$html$Html$Attributes$autofocus(true),
 								$elm$html$Html$Attributes$value(model.input)
 							]),
 						_List_Nil),
@@ -6423,7 +6424,8 @@ var $author$project$Main$view = function (model) {
 									[
 										$elm$html$Html$Attributes$disabled(
 										_Utils_eq(model.state, $author$project$Main$Waiting) || $elm$core$String$isEmpty(
-											$elm$core$String$trim(model.input)))
+											$elm$core$String$trim(model.input))),
+										$elm$html$Html$Attributes$id('analyzeButton')
 									]),
 								_List_fromArray(
 									[
@@ -6441,7 +6443,8 @@ var $author$project$Main$view = function (model) {
 							$elm$html$Html$div,
 							_List_fromArray(
 								[
-									$elm$html$Html$Attributes$id('waiting')
+									$elm$html$Html$Attributes$id('waiting'),
+									$elm$html$Html$Attributes$class('center')
 								]),
 							_List_fromArray(
 								[
@@ -6453,7 +6456,8 @@ var $author$project$Main$view = function (model) {
 							$elm$html$Html$div,
 							_List_fromArray(
 								[
-									$elm$html$Html$Attributes$id('result')
+									$elm$html$Html$Attributes$id('result'),
+									$elm$html$Html$Attributes$class('center')
 								]),
 							_List_fromArray(
 								[
@@ -6547,18 +6551,14 @@ var $author$project$Main$view = function (model) {
 												]))
 										])),
 									A2(
-									$elm$html$Html$p,
-									_List_Nil,
-									_List_fromArray(
-										[
-											$elm$html$Html$text('結果をツイートしてみよう')
-										])),
-									A2(
 									$elm$html$Html$button,
-									_List_Nil,
 									_List_fromArray(
 										[
-											$elm$html$Html$text('Tweet')
+											$elm$html$Html$Attributes$id('tweetButton')
+										]),
+									_List_fromArray(
+										[
+											$elm$html$Html$text('結果をツイートする')
 										]))
 								]));
 					default:

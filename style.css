@@ -1,41 +1,135 @@
 body {
-    text-align: center;
-    background-color: brown;
-    min-width: 350px;
-    max-width: 100%;
-    font-family: 'Noto Sans JP', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-width: 300px;
 }
 
 h1 {
-    background-color: darksalmon;
-    font-weight: bold;
-    font-size: 4em;
-    padding: 10%;
+    height: 100vh;
+    margin: 0;
+}
+
+@media screen and (max-width: 780px) {
+    h1 {
+        font-size: 10vw;
+    }
+
+    #heed {
+        font-size: 2vw;
+    }
+
+    #description {
+        font-size: 2vw;
+    }
+}
+
+@media screen and (min-width: 780px) and (max-width: 1200px) {
+    h1 {
+        font-size: 10vw;
+    }
+
+    #description {
+        font-size: 2.5vw;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    h1 {
+        font-size: 7vw;
+    }
+
+    #description {
+        font-size: 1.5vw;
+    }
 }
 
 #description {
-    background-color: darkkhaki;
-    padding: 5%;
-    font-size: x-large;
+    height: 25vh;
 }
 
-#heed {
-    list-style: none;
-}
 
-#result {
-    background-color: darkblue;
-}
-
-#ranking {
-    background-color: darkslategrey;
-    list-style: none;
-}
-
-#waiting {
-    background-color: slateblue;
-}
 
 #inputForm {
-    background-color: tomato;
+    height: 50vh;
+    font-size: 2vw;
+}
+
+textarea {
+    width: 60%;
+    height: 40%;
+    border: 1px solid royalblue;
+    resize: none;
+}
+
+.center {
+    display: flex;
+    /* 要素をflexboxに対応させる */
+    align-items: center;
+    /* 縦方向の中央揃え */
+    justify-content: center;
+    /* 横方向の中央揃え */
+    flex-direction: column;
+    /* 子要素の並びを上から下にする（要素の改行に対応） */
+    width: 100%;
+}
+
+li {
+    list-style: none;
+}
+
+#analyzeButton {
+    display: inline-block;
+    max-width: 180px;
+    text-align: left;
+    border: 2px solid #9ec34b;
+    font-size: 16px;
+    color: #9ec34b;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: .4s;
+}
+
+#analyzeButton:hover {
+    background-color: #9ec34b;
+    border-color: #cbe585;
+    color: #FFF;
+}
+
+#analyzeButton:disabled {
+    background-color: darkgray;
+    border-color: grey;
+    color: grey;
+}
+
+
+#ranking {
+    font-size: 2.5vw;
+}
+
+button {
+    display: inline-block;
+    max-width: 180px;
+    text-align: left;
+    border: 2px solid #9ec34b;
+    font-size: 16px;
+    color: #9ec34b;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: .4s;
+}
+
+button:hover {
+    background-color: #9ec34b;
+    border-color: #cbe585;
+    color: #FFF;
+}
+
+button:disabled {
+    background-color: darkgray;
+    border-color: grey;
+    color: grey;
 }
