@@ -4530,6 +4530,23 @@ function _Http_track(router, xhr, tracker)
 			size: event.lengthComputable ? $elm$core$Maybe$Just(event.total) : $elm$core$Maybe$Nothing
 		}))));
 	});
+}
+
+function _Url_percentEncode(string)
+{
+	return encodeURIComponent(string);
+}
+
+function _Url_percentDecode(string)
+{
+	try
+	{
+		return $elm$core$Maybe$Just(decodeURIComponent(string));
+	}
+	catch (e)
+	{
+		return $elm$core$Maybe$Nothing;
+	}
 }var $elm$core$Basics$EQ = {$: 'EQ'};
 var $elm$core$Basics$GT = {$: 'GT'};
 var $elm$core$Basics$LT = {$: 'LT'};
@@ -6270,6 +6287,25 @@ var $elm$html$Html$Attributes$stringProperty = F2(
 			$elm$json$Json$Encode$string(string));
 	});
 var $elm$html$Html$Attributes$class = $elm$html$Html$Attributes$stringProperty('className');
+var $elm$url$Url$Builder$toQueryPair = function (_v0) {
+	var key = _v0.a;
+	var value = _v0.b;
+	return key + ('=' + value);
+};
+var $elm$url$Url$Builder$toQuery = function (parameters) {
+	if (!parameters.b) {
+		return '';
+	} else {
+		return '?' + A2(
+			$elm$core$String$join,
+			'&',
+			A2($elm$core$List$map, $elm$url$Url$Builder$toQueryPair, parameters));
+	}
+};
+var $elm$url$Url$Builder$crossOrigin = F3(
+	function (prePath, pathSegments, parameters) {
+		return prePath + ('/' + (A2($elm$core$String$join, '/', pathSegments) + $elm$url$Url$Builder$toQuery(parameters)));
+	});
 var $elm$json$Json$Encode$bool = _Json_wrap;
 var $elm$html$Html$Attributes$boolProperty = F2(
 	function (key, bool) {
@@ -6345,6 +6381,18 @@ var $elm$html$Html$Events$onSubmit = function (msg) {
 			$elm$json$Json$Decode$succeed(msg)));
 };
 var $elm$html$Html$p = _VirtualDom_node('p');
+var $elm$url$Url$Builder$QueryParameter = F2(
+	function (a, b) {
+		return {$: 'QueryParameter', a: a, b: b};
+	});
+var $elm$url$Url$percentEncode = _Url_percentEncode;
+var $elm$url$Url$Builder$string = F2(
+	function (key, value) {
+		return A2(
+			$elm$url$Url$Builder$QueryParameter,
+			$elm$url$Url$percentEncode(key),
+			$elm$url$Url$percentEncode(value));
+	});
 var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
 var $elm$html$Html$textarea = _VirtualDom_node('textarea');
@@ -6458,7 +6506,17 @@ var $author$project$Main$view = function (model) {
 								]));
 					case 'Loaded':
 						var ranking = _v0.a;
-						var tweetText = 'http://twitter.com/share?url=' + ('https://es-analyzer.com/' + ('&text=' + ('あなたのESに似ている企業は%0a%0a' + ('1位%20' + (ranking.first + ('%0a' + ('2位%20' + (ranking.second + ('%0a' + ('3位%20' + (ranking.third + ('%0a' + ('4位%20' + (ranking.fourth + ('%0a' + ('5位%20' + (ranking.fifth + ('%0a' + ('6位%20' + (ranking.sixth + ('%0a' + ('7位%20' + (ranking.seventh + ('%0a' + ('8位%20' + (ranking.eighth + ('%0a' + ('9位%20' + (ranking.ninth + ('%0a' + ('10位%20' + (ranking.tenth + '%0a'))))))))))))))))))))))))))))))));
+						var tweetText = 'あなたのES似ている企業は \n 1位 \u000D' + (ranking.first + ('\n 2位 \u000D ' + (ranking.second + ('\n 3位 \u000D ' + (ranking.third + ('\n 4位 \u000D ' + (ranking.fourth + ('\n 5位 \u000D ' + (ranking.fifth + ('\n 6位 \u000D ' + (ranking.sixth + ('\n 7位 \u000D ' + (ranking.seventh + ('\n 8位 \u000D ' + (ranking.eighth + ('\n 9位 \u000D ' + (ranking.ninth + ('\n 10位 \u000D ' + ranking.tenth))))))))))))))))));
+						var url = A3(
+							$elm$url$Url$Builder$crossOrigin,
+							'http://twitter.com',
+							_List_fromArray(
+								['share']),
+							_List_fromArray(
+								[
+									A2($elm$url$Url$Builder$string, 'url', 'https://es-analyzer.com/'),
+									A2($elm$url$Url$Builder$string, 'text', tweetText)
+								]));
 						return A2(
 							$elm$html$Html$div,
 							_List_fromArray(
@@ -6600,7 +6658,7 @@ var $author$project$Main$view = function (model) {
 									_List_fromArray(
 										[
 											$elm$html$Html$Attributes$id('tweetButton'),
-											$elm$html$Html$Attributes$href(tweetText)
+											$elm$html$Html$Attributes$href(url)
 										]),
 									_List_fromArray(
 										[

@@ -7,6 +7,7 @@ import Html.Events exposing (..)
 import Http
 import Json.Decode exposing (Decoder, string, succeed)
 import Json.Decode.Pipeline exposing (required)
+import Url.Builder as UB exposing (crossOrigin, string)
 
 
 main : Program () Model Msg
@@ -125,40 +126,10 @@ view model =
             Loaded ranking ->
                 let
                     tweetText =
-                        "http://twitter.com/share?url="
-                            ++ "https://es-analyzer.com/"
-                            ++ "&text="
-                            ++ "あなたのESに似ている企業は%0a%0a"
-                            ++ "1位%20"
-                            ++ ranking.first
-                            ++ "%0a"
-                            ++ "2位%20"
-                            ++ ranking.second
-                            ++ "%0a"
-                            ++ "3位%20"
-                            ++ ranking.third
-                            ++ "%0a"
-                            ++ "4位%20"
-                            ++ ranking.fourth
-                            ++ "%0a"
-                            ++ "5位%20"
-                            ++ ranking.fifth
-                            ++ "%0a"
-                            ++ "6位%20"
-                            ++ ranking.sixth
-                            ++ "%0a"
-                            ++ "7位%20"
-                            ++ ranking.seventh
-                            ++ "%0a"
-                            ++ "8位%20"
-                            ++ ranking.eighth
-                            ++ "%0a"
-                            ++ "9位%20"
-                            ++ ranking.ninth
-                            ++ "%0a"
-                            ++ "10位%20"
-                            ++ ranking.tenth
-                            ++ "%0a"
+                        "あなたのES似ている企業は \n 1位 \u{000D}" ++ ranking.first ++ "\n 2位 \u{000D} " ++ ranking.second ++ "\n 3位 \u{000D} " ++ ranking.third ++ "\n 4位 \u{000D} " ++ ranking.fourth ++ "\n 5位 \u{000D} " ++ ranking.fifth ++ "\n 6位 \u{000D} " ++ ranking.sixth ++ "\n 7位 \u{000D} " ++ ranking.seventh ++ "\n 8位 \u{000D} " ++ ranking.eighth ++ "\n 9位 \u{000D} " ++ ranking.ninth ++ "\n 10位 \u{000D} " ++ ranking.tenth
+
+                    url =
+                        crossOrigin "http://twitter.com" [ "share" ] [ UB.string "url" "https://es-analyzer.com/", UB.string "text" tweetText ]
                 in
                 div [ id "result", class "center" ]
                     [ Html.form [ onSubmit Send, id "inputForm", class "center" ]
@@ -190,7 +161,7 @@ view model =
                         , li [] [ text "9位\u{3000}", text ranking.ninth ]
                         , li [] [ text "10位 ", text ranking.tenth ]
                         ]
-                    , a [ id "tweetButton", href tweetText ] [ text "結果をツイートする" ]
+                    , a [ id "tweetButton", href url ] [ text "結果をツイートする" ]
                     ]
 
             Failed e ->
@@ -219,13 +190,13 @@ type alias Ranking =
 rankingDecoder : Decoder Ranking
 rankingDecoder =
     succeed Ranking
-        |> required "first" string
-        |> required "second" string
-        |> required "third" string
-        |> required "fourth" string
-        |> required "fifth" string
-        |> required "sixth" string
-        |> required "seventh" string
-        |> required "eighth" string
-        |> required "ninth" string
-        |> required "tenth" string
+        |> required "first" Json.Decode.string
+        |> required "second" Json.Decode.string
+        |> required "third" Json.Decode.string
+        |> required "fourth" Json.Decode.string
+        |> required "fifth" Json.Decode.string
+        |> required "sixth" Json.Decode.string
+        |> required "seventh" Json.Decode.string
+        |> required "eighth" Json.Decode.string
+        |> required "ninth" Json.Decode.string
+        |> required "tenth" Json.Decode.string
