@@ -126,7 +126,7 @@ view model =
             Loaded ranking ->
                 let
                     tweetText =
-                        "あなたのES似ている企業は \n 1位 \u{000D}" ++ ranking.first ++ "\n 2位 \u{000D} " ++ ranking.second ++ "\n 3位 \u{000D} " ++ ranking.third ++ "\n 4位 \u{000D} " ++ ranking.fourth ++ "\n 5位 \u{000D} " ++ ranking.fifth ++ "\n 6位 \u{000D} " ++ ranking.sixth ++ "\n 7位 \u{000D} " ++ ranking.seventh ++ "\n 8位 \u{000D} " ++ ranking.eighth ++ "\n 9位 \u{000D} " ++ ranking.ninth ++ "\n 10位 \u{000D} " ++ ranking.tenth
+                        "あなたのESに似ている企業は\n1位 " ++ ranking.first ++ "\n2位 " ++ ranking.second ++ "\n3位 " ++ ranking.third ++ "\n4位 " ++ ranking.fourth ++ "\n5位 " ++ ranking.fifth ++ "\n6位 " ++ ranking.sixth ++ "\n7位 " ++ ranking.seventh ++ "\n8位 " ++ ranking.eighth ++ "\n9位 " ++ ranking.ninth ++ "\n10位 " ++ ranking.tenth
 
                     url =
                         crossOrigin "http://twitter.com" [ "share" ] [ UB.string "url" "https://es-analyzer.com/", UB.string "text" tweetText ]

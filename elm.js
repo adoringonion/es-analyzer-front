@@ -6506,7 +6506,7 @@ var $author$project$Main$view = function (model) {
 								]));
 					case 'Loaded':
 						var ranking = _v0.a;
-						var tweetText = 'あなたのES似ている企業は \n 1位 \u000D' + (ranking.first + ('\n 2位 \u000D ' + (ranking.second + ('\n 3位 \u000D ' + (ranking.third + ('\n 4位 \u000D ' + (ranking.fourth + ('\n 5位 \u000D ' + (ranking.fifth + ('\n 6位 \u000D ' + (ranking.sixth + ('\n 7位 \u000D ' + (ranking.seventh + ('\n 8位 \u000D ' + (ranking.eighth + ('\n 9位 \u000D ' + (ranking.ninth + ('\n 10位 \u000D ' + ranking.tenth))))))))))))))))));
+						var tweetText = 'あなたのESに似ている企業は\n1位 ' + (ranking.first + ('\n2位 ' + (ranking.second + ('\n3位 ' + (ranking.third + ('\n4位 ' + (ranking.fourth + ('\n5位 ' + (ranking.fifth + ('\n6位 ' + (ranking.sixth + ('\n7位 ' + (ranking.seventh + ('\n8位 ' + (ranking.eighth + ('\n9位 ' + (ranking.ninth + ('\n10位 ' + ranking.tenth))))))))))))))))));
 						var url = A3(
 							$elm$url$Url$Builder$crossOrigin,
 							'http://twitter.com',
