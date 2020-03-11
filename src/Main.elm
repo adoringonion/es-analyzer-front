@@ -87,35 +87,36 @@ view model =
     div [ id "container" ]
         [ h1 [ id "title", class "center" ]
             [ text "ES-ANALYZER" ]
-        , div [ id "description", class "center" ]
-            [ p [ id "desc" ]
-                [ text "約500社分のエントリーシートを学習したAI（機械学習）が" ]
-            , p [ id "desc2" ]
-                [ text "あなたの文章がどの企業のエントリーシートに似ているか分析します" ]
-
-            -- , ul [ id "heed" ]
-            --     [ li [] [ text "結果を本気にしないでください" ]
-            --     , li [] [ text "分析結果は毎回少し変動します" ]
-            --     , li [] [ text "このアプリは複数の就活サイトに掲載されているエントリーシートを分析した結果をもとに作られています" ]
-            --     ]
-            ]
         , case model.state of
             Init ->
-                Html.form [ onSubmit Send, id "inputForm", class "center" ]
-                    [ textarea
-                        [ onInput Input
-                        , value model.input
-                        ]
-                        []
-                    , p []
-                        [ button
-                            [ disabled
-                                ((model.state == Waiting)
-                                    || String.isEmpty (String.trim model.input)
-                                )
-                            , id "analyzeButton"
+                div [ class "center" ]
+                    [ div [ id "description", class "center" ]
+                        [ p [ id "desc" ]
+                            [ text "約500社分のエントリーシートのデータを学習したAI（機械学習）が" ]
+                        , p [ id "desc2" ]
+                            [ text "入力した文章がどの企業のESに似ているか判定します" ]
+                        , ul [ id "heed" ]
+                            [ li [] [ text "doc2vecという機械学習ライブラリを使った判定です" ]
+                            , li [] [ text "文章が短すぎると似たりよったりな結果になります" ]
+                            , li [] [ text "あまり本気にしないでください" ]
                             ]
-                            [ text "分析する" ]
+                        ]
+                    , Html.form [ onSubmit Send, id "inputForm", class "center" ]
+                        [ textarea
+                            [ onInput Input
+                            , value model.input
+                            ]
+                            []
+                        , p []
+                            [ button
+                                [ disabled
+                                    ((model.state == Waiting)
+                                        || String.isEmpty (String.trim model.input)
+                                    )
+                                , id "analyzeButton"
+                                ]
+                                [ text "分析する" ]
+                            ]
                         ]
                     ]
 

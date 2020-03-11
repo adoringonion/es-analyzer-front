@@ -6420,75 +6420,114 @@ var $author$project$Main$view = function (model) {
 					[
 						$elm$html$Html$text('ES-ANALYZER')
 					])),
-				A2(
-				$elm$html$Html$div,
-				_List_fromArray(
-					[
-						$elm$html$Html$Attributes$id('description'),
-						$elm$html$Html$Attributes$class('center')
-					]),
-				_List_fromArray(
-					[
-						A2(
-						$elm$html$Html$p,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$id('desc')
-							]),
-						_List_fromArray(
-							[
-								$elm$html$Html$text('約500社分のエントリーシートを学習したAI（機械学習）が')
-							])),
-						A2(
-						$elm$html$Html$p,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$id('desc2')
-							]),
-						_List_fromArray(
-							[
-								$elm$html$Html$text('あなたの文章がどの企業のエントリーシートに似ているか分析します')
-							]))
-					])),
 				function () {
 				var _v0 = model.state;
 				switch (_v0.$) {
 					case 'Init':
 						return A2(
-							$elm$html$Html$form,
+							$elm$html$Html$div,
 							_List_fromArray(
 								[
-									$elm$html$Html$Events$onSubmit($author$project$Main$Send),
-									$elm$html$Html$Attributes$id('inputForm'),
 									$elm$html$Html$Attributes$class('center')
 								]),
 							_List_fromArray(
 								[
 									A2(
-									$elm$html$Html$textarea,
+									$elm$html$Html$div,
 									_List_fromArray(
 										[
-											$elm$html$Html$Events$onInput($author$project$Main$Input),
-											$elm$html$Html$Attributes$value(model.input)
+											$elm$html$Html$Attributes$id('description'),
+											$elm$html$Html$Attributes$class('center')
 										]),
-									_List_Nil),
-									A2(
-									$elm$html$Html$p,
-									_List_Nil,
 									_List_fromArray(
 										[
 											A2(
-											$elm$html$Html$button,
+											$elm$html$Html$p,
 											_List_fromArray(
 												[
-													$elm$html$Html$Attributes$disabled(
-													_Utils_eq(model.state, $author$project$Main$Waiting) || $elm$core$String$isEmpty(
-														$elm$core$String$trim(model.input))),
-													$elm$html$Html$Attributes$id('analyzeButton')
+													$elm$html$Html$Attributes$id('desc')
 												]),
 											_List_fromArray(
 												[
-													$elm$html$Html$text('分析する')
+													$elm$html$Html$text('約500社分のエントリーシートのデータを学習したAI（機械学習）が')
+												])),
+											A2(
+											$elm$html$Html$p,
+											_List_fromArray(
+												[
+													$elm$html$Html$Attributes$id('desc2')
+												]),
+											_List_fromArray(
+												[
+													$elm$html$Html$text('入力した文章がどの企業のESに似ているか判定します')
+												])),
+											A2(
+											$elm$html$Html$ul,
+											_List_fromArray(
+												[
+													$elm$html$Html$Attributes$id('heed')
+												]),
+											_List_fromArray(
+												[
+													A2(
+													$elm$html$Html$li,
+													_List_Nil,
+													_List_fromArray(
+														[
+															$elm$html$Html$text('doc2vecという機械学習ライブラリを使った判定です')
+														])),
+													A2(
+													$elm$html$Html$li,
+													_List_Nil,
+													_List_fromArray(
+														[
+															$elm$html$Html$text('文章が短すぎると似たりよったりな結果になります')
+														])),
+													A2(
+													$elm$html$Html$li,
+													_List_Nil,
+													_List_fromArray(
+														[
+															$elm$html$Html$text('あまり本気にしないでください')
+														]))
+												]))
+										])),
+									A2(
+									$elm$html$Html$form,
+									_List_fromArray(
+										[
+											$elm$html$Html$Events$onSubmit($author$project$Main$Send),
+											$elm$html$Html$Attributes$id('inputForm'),
+											$elm$html$Html$Attributes$class('center')
+										]),
+									_List_fromArray(
+										[
+											A2(
+											$elm$html$Html$textarea,
+											_List_fromArray(
+												[
+													$elm$html$Html$Events$onInput($author$project$Main$Input),
+													$elm$html$Html$Attributes$value(model.input)
+												]),
+											_List_Nil),
+											A2(
+											$elm$html$Html$p,
+											_List_Nil,
+											_List_fromArray(
+												[
+													A2(
+													$elm$html$Html$button,
+													_List_fromArray(
+														[
+															$elm$html$Html$Attributes$disabled(
+															_Utils_eq(model.state, $author$project$Main$Waiting) || $elm$core$String$isEmpty(
+																$elm$core$String$trim(model.input))),
+															$elm$html$Html$Attributes$id('analyzeButton')
+														]),
+													_List_fromArray(
+														[
+															$elm$html$Html$text('分析する')
+														]))
 												]))
 										]))
 								]));
@@ -6506,7 +6545,7 @@ var $author$project$Main$view = function (model) {
 								]));
 					case 'Loaded':
 						var ranking = _v0.a;
-						var tweetText = 'あなたのESに似ている企業は\n1位 ' + (ranking.first + ('\n2位 ' + (ranking.second + ('\n3位 ' + (ranking.third + ('\n4位 ' + (ranking.fourth + ('\n5位 ' + (ranking.fifth + ('\n6位 ' + (ranking.sixth + ('\n7位 ' + (ranking.seventh + ('\n8位 ' + (ranking.eighth + ('\n9位 ' + (ranking.ninth + ('\n10位 ' + ranking.tenth))))))))))))))))));
+						var tweetText = 'あなたのESに似ている企業は' + ('\n1位 ' + (ranking.first + ('\n2位 ' + (ranking.second + ('\n3位 ' + (ranking.third + ('\n4位 ' + (ranking.fourth + ('\n5位 ' + (ranking.fifth + ('\n6位 ' + (ranking.sixth + ('\n7位 ' + (ranking.seventh + ('\n8位 ' + (ranking.eighth + ('\n9位 ' + (ranking.ninth + ('\n10位 ' + ranking.tenth)))))))))))))))))));
 						var url = A3(
 							$elm$url$Url$Builder$crossOrigin,
 							'http://twitter.com',
