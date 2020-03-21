@@ -18,14 +18,14 @@ h1 {
 }
 @media screen and (max-width: 1000px) {
   html {
-    background-image: url("res/back.png");
+    background-image: url("res/back.webp");
     background-size: cover;
   }
 }
 
 @media screen and (min-width: 1000px) {
   html {
-    background-image: url("res/back-large.jpg");
+    background-image: url("res/back-large.webp");
     background-size: cover;
   }
 }
